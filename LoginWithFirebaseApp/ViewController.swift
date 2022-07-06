@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
 
@@ -30,18 +31,65 @@ class ViewController: UIViewController {
         passwordTextField.delegate = self
         usernameTextField.delegate = self
 
+        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard),
+                                                name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard),
+                                                name: UIResponder.keyboardWillShowNotification, object: nil)
+ }
+
+    @objc func showKeyboard(notification: Notification) {
+
+//        let keyboardFrame = (notification.userInfo![UIResponder.keyboardIsLocalUserInfoKey] as AnyObject).cgRectValue
+//        guard let keyboardMinY = keyboardFrame?.minY else { return }
+
+//        let registerButtonMaxY = registerButton.frame.maxY
+//        let distance = registerButtonMaxY - keyboardMinY + 20
+//        let transform = CGAffineTransform(translationX: 0, y: -distance)
+
+//        UIView.animate(withDuration: 0.5
+//                       , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: []) {
+//            self.view.transform = transform
+//        }
 
     }
+
+    @objc func hideKeyboard() {
+        UIView.animate(withDuration: 0.5
+                       , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: []) {
+            self.view.transform = .identity
+        }
+
+    }
+
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
 
 
+    @IBAction func tappedRegisterButton(_ sender: Any) {
+        handleAuthToFirebase()
+
+    }
+
+    private func handleAuthToFirebase() {
+        guard let email = emsilTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+
+        Auth.auth().createUser(withEmail: email, password: password) { res, err in
+            if let err = err {
+                print("認証情報の保存に失敗しました。\(err)")
+                return
+            }
+            print("認証情報の保存に成功しました。")
+
+        }
+
+    }
 }
 
 extension ViewController: UITextFieldDelegate {
-
 
     func textFieldDidChangeSelection(_ textField: UITextField) {
         let emailIsEmpty = emsilTextField.text?.isEmpty ?? true
@@ -55,8 +103,5 @@ extension ViewController: UITextFieldDelegate {
             registerButton.isEnabled = true
             registerButton.backgroundColor = UIColor.rgb(red: 255, green: 141, blue: 0)
         }
-
-
-        print(":", textField.text)
     }
 }

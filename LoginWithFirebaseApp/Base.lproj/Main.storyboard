@@ -92,6 +92,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Register">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="tappedRegisterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6dS-GW-CgW"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OeL-eh-bod">
                                 <rect key="frame" x="46" y="686" width="322" height="30"/>
