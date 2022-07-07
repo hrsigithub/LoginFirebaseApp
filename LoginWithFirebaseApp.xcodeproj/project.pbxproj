@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48088F33287671B600427E43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48088F32287671B600427E43 /* GoogleService-Info.plist */; };
+		48088F352876795500427E43 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48088F342876795500427E43 /* Home.storyboard */; };
+		48088F3728767D3800427E43 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48088F3628767D3800427E43 /* HomeViewController.swift */; };
 		4817A9DA287532EC009766E7 /* UIColor-Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4817A9D9287532EC009766E7 /* UIColor-Extention.swift */; };
-		4817A9DC2875A6DF009766E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4817A9DB2875A6DF009766E7 /* GoogleService-Info.plist */; };
 		4817A9DF2875A828009766E7 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4817A9DE2875A828009766E7 /* FirebaseAnalytics */; };
 		4817A9E22875ADCD009766E7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4817A9E12875ADCD009766E7 /* FirebaseAuth */; };
 		4817A9E52875AE38009766E7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4817A9E42875AE38009766E7 /* FirebaseFirestore */; };
@@ -21,8 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48088F32287671B600427E43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		48088F342876795500427E43 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		48088F3628767D3800427E43 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4817A9D9287532EC009766E7 /* UIColor-Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor-Extention.swift"; sourceTree = "<group>"; };
-		4817A9DB2875A6DF009766E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		48FE32972874F6BB004B724E /* LoginWithFirebaseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginWithFirebaseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FE329A2874F6BB004B724E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48FE329C2874F6BB004B724E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,10 +72,12 @@
 			children = (
 				48FE329A2874F6BB004B724E /* AppDelegate.swift */,
 				4817A9D9287532EC009766E7 /* UIColor-Extention.swift */,
+				48088F32287671B600427E43 /* GoogleService-Info.plist */,
 				48FE329C2874F6BB004B724E /* SceneDelegate.swift */,
 				48FE329E2874F6BB004B724E /* ViewController.swift */,
+				48088F3628767D3800427E43 /* HomeViewController.swift */,
 				48FE32A02874F6BB004B724E /* Main.storyboard */,
-				4817A9DB2875A6DF009766E7 /* GoogleService-Info.plist */,
+				48088F342876795500427E43 /* Home.storyboard */,
 				48FE32A32874F6BE004B724E /* Assets.xcassets */,
 				48FE32A52874F6BE004B724E /* LaunchScreen.storyboard */,
 				48FE32A82874F6BE004B724E /* Info.plist */,
@@ -148,7 +154,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				48FE32A72874F6BE004B724E /* LaunchScreen.storyboard in Resources */,
-				4817A9DC2875A6DF009766E7 /* GoogleService-Info.plist in Resources */,
+				48088F352876795500427E43 /* Home.storyboard in Resources */,
+				48088F33287671B600427E43 /* GoogleService-Info.plist in Resources */,
 				48FE32A42874F6BE004B724E /* Assets.xcassets in Resources */,
 				48FE32A22874F6BB004B724E /* Main.storyboard in Resources */,
 			);
@@ -161,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48088F3728767D3800427E43 /* HomeViewController.swift in Sources */,
 				48FE329F2874F6BB004B724E /* ViewController.swift in Sources */,
 				48FE329B2874F6BB004B724E /* AppDelegate.swift in Sources */,
 				4817A9DA287532EC009766E7 /* UIColor-Extention.swift in Sources */,

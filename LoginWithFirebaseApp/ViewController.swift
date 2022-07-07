@@ -8,6 +8,20 @@
 import UIKit
 import Firebase
 
+struct User {
+    let name: String
+    let createAt: Timestamp
+    let email: String
+
+    init(dic: [String: Any]) {
+        self.name = dic["name"] as! String
+        self.createAt = dic["createAt"] as! Timestamp
+        self.email = dic["email"] as! String
+
+    }
+}
+
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var emsilTextField: UITextField!
@@ -70,7 +84,6 @@ class ViewController: UIViewController {
 
     @IBAction func tappedRegisterButton(_ sender: Any) {
         handleAuthToFirebase()
-
     }
 
     private func handleAuthToFirebase() {
@@ -84,28 +97,48 @@ class ViewController: UIViewController {
             }
             print("認証情報の保存に成功しました。")
 
-            guard let uid = Auth.auth().currentUser?.uid else { return }
-            guard let name = self.usernameTextField.text else { return }
+            self.addUserInfoToFirestore(email: email)
 
-            let docData = ["email": email, "name": name, "createAt": Timestamp()] as [String : Any]
+        }
+    }
 
-            Firestore.firestore().collection("users").document(uid).setData(docData) { (err) in
+    private func addUserInfoToFirestore(email: String) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let name = self.usernameTextField.text else { return }
+
+        let docData = ["email": email, "name": name, "createAt": Timestamp()] as [String : Any]
+        let userRef = Firestore.firestore().collection("users").document(uid)
+
+        userRef.setData(docData) { (err) in
+            if let err = err {
+                print("FireStoreの保存に失敗しました。\(err)")
+                return
+            }
+
+            print("FireStoreの保存に成功しました。")
+
+            userRef.getDocument { (snapshot, err) in
                 if let err = err {
-                    print("FireStoreの保存に失敗しました。\(err)")
+                    print("ユーザ情報の取得に失敗しました。\(err)")
                     return
                 }
 
-                print("FireStoreの保存に成功しました。")
+                guard let data = snapshot?.data() else { return }
+                let user = User.init(dic: data)
 
+                print("ユーザー情報の取得が出来ました。\(user.name)")
+
+                let storyBoard = UIStoryboard(name: "Home", bundle: nil)
+                let homeViewController = storyBoard.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+
+                self.present(homeViewController, animated: true, completion: nil)
 
 
             }
-
-
-
         }
-
     }
+
+
 }
 
 extension ViewController: UITextFieldDelegate {
