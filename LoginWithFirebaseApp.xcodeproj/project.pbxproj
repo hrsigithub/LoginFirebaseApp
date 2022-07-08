@@ -14,6 +14,7 @@
 		4817A9DF2875A828009766E7 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4817A9DE2875A828009766E7 /* FirebaseAnalytics */; };
 		4817A9E22875ADCD009766E7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4817A9E12875ADCD009766E7 /* FirebaseAuth */; };
 		4817A9E52875AE38009766E7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4817A9E42875AE38009766E7 /* FirebaseFirestore */; };
+		48C69EF92877C51C0070E344 /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 48C69EF82877C51C0070E344 /* PKHUD */; };
 		48FE329B2874F6BB004B724E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE329A2874F6BB004B724E /* AppDelegate.swift */; };
 		48FE329D2874F6BB004B724E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE329C2874F6BB004B724E /* SceneDelegate.swift */; };
 		48FE329F2874F6BB004B724E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE329E2874F6BB004B724E /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4817A9DF2875A828009766E7 /* FirebaseAnalytics in Frameworks */,
+				48C69EF92877C51C0070E344 /* PKHUD in Frameworks */,
 				4817A9E22875ADCD009766E7 /* FirebaseAuth in Frameworks */,
 				4817A9E52875AE38009766E7 /* FirebaseFirestore in Frameworks */,
 			);
@@ -105,6 +107,7 @@
 				4817A9DE2875A828009766E7 /* FirebaseAnalytics */,
 				4817A9E12875ADCD009766E7 /* FirebaseAuth */,
 				4817A9E42875AE38009766E7 /* FirebaseFirestore */,
+				48C69EF82877C51C0070E344 /* PKHUD */,
 			);
 			productName = LoginWithFirebaseApp;
 			productReference = 48FE32972874F6BB004B724E /* LoginWithFirebaseApp.app */;
@@ -138,6 +141,7 @@
 				4817A9DD2875A828009766E7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4817A9E02875ADCD009766E7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4817A9E32875AE38009766E7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				48C69EF72877C51C0070E344 /* XCRemoteSwiftPackageReference "PKHUD" */,
 			);
 			productRefGroup = 48FE32982874F6BB004B724E /* Products */;
 			projectDirPath = "";
@@ -414,6 +418,14 @@
 				kind = branch;
 			};
 		};
+		48C69EF72877C51C0070E344 /* XCRemoteSwiftPackageReference "PKHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pkluz/PKHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -431,6 +443,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4817A9E32875AE38009766E7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		48C69EF82877C51C0070E344 /* PKHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 48C69EF72877C51C0070E344 /* XCRemoteSwiftPackageReference "PKHUD" */;
+			productName = PKHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 struct User {
     let name: String
@@ -87,12 +88,16 @@ class ViewController: UIViewController {
     }
 
     private func handleAuthToFirebase() {
+        HUD.show(.progress, onView: view)
         guard let email = emsilTextField.text else { return }
         guard let password = passwordTextField.text else { return }
 
         Auth.auth().createUser(withEmail: email, password: password) { res, err in
             if let err = err {
                 print("認証情報の保存に失敗しました。\(err)")
+                HUD.hide{ ( _ ) in
+                    HUD.flash(.error, delay: 1)
+                }
                 return
             }
             print("認証情報の保存に成功しました。")
@@ -112,6 +117,9 @@ class ViewController: UIViewController {
         userRef.setData(docData) { (err) in
             if let err = err {
                 print("FireStoreの保存に失敗しました。\(err)")
+                HUD.hide{ ( _ ) in
+                    HUD.flash(.error, delay: 1)
+                }
                 return
             }
 
@@ -120,6 +128,9 @@ class ViewController: UIViewController {
             userRef.getDocument { (snapshot, err) in
                 if let err = err {
                     print("ユーザ情報の取得に失敗しました。\(err)")
+                    HUD.hide{ ( _ ) in
+                        HUD.flash(.error, delay: 1)
+                    }
                     return
                 }
 
@@ -127,15 +138,28 @@ class ViewController: UIViewController {
                 let user = User.init(dic: data)
 
                 print("ユーザー情報の取得が出来ました。\(user.name)")
+                HUD.hide{ ( _ ) in
+//                    HUD.flash(.success, delay: 1)
+                    HUD.flash(.success, onView: self.view, delay: 1) { (_) in
+                        self.presentToHomeViewController(user: user)
+                    }
+                }
 
-                let storyBoard = UIStoryboard(name: "Home", bundle: nil)
-                let homeViewController = storyBoard.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
-
-                self.present(homeViewController, animated: true, completion: nil)
 
 
             }
         }
+    }
+
+    private func presentToHomeViewController(user: User) {
+        let storyBoard = UIStoryboard(name: "Home", bundle: nil)
+        let homeViewController = storyBoard.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+
+        homeViewController.user = user
+        homeViewController.modalPresentationStyle = .fullScreen
+
+        self.present(homeViewController, animated: true, completion: nil)
+
     }
 
 
