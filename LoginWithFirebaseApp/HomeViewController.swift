@@ -36,19 +36,47 @@ class HomeViewController: UIViewController {
             dateLabel.text = "作成日： " + dateStiing
 
         }
+    }
 
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        confirmLoggedUser()
+
+    }
+
+    private func confirmLoggedUser() {
+        if Auth.auth().currentUser?.uid == nil || user == nil {
+
+            presentToMainVC()
+
+        }
+    }
+
+    private func presentToMainVC () {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(identifier: "ViewController") as! ViewController
+
+        let nav = UINavigationController(rootViewController: vc)
+
+        nav.modalPresentationStyle = .fullScreen
+
+        self.present(nav, animated: true, completion: nil)
 
 
     }
 
     @IBAction func taptoLogoutButton(_ sender: Any) {
         Logout()
-        dismiss(animated: true)
+//        dismiss(animated: true)
     }
 
     private func Logout() {
         do {
         try Auth.auth().signOut()
+            presentToMainVC()
+
         } catch(let err) {
             print("ログアウトに失敗しました。\(err)")
         }

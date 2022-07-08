@@ -83,6 +83,22 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func TappedToDontHaveAccountButton(_ sender: Any) {
+
+        print("コチラ")
+        let storyBoard = UIStoryboard(name: "Login", bundle: nil)
+        let viewController = storyBoard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+
+        navigationController?.pushViewController(viewController, animated: true)
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.navigationBar.isHidden = true
+    }
+
     @IBAction func tappedRegisterButton(_ sender: Any) {
         handleAuthToFirebase()
     }
@@ -139,7 +155,6 @@ class ViewController: UIViewController {
 
                 print("ユーザー情報の取得が出来ました。\(user.name)")
                 HUD.hide{ ( _ ) in
-//                    HUD.flash(.success, delay: 1)
                     HUD.flash(.success, onView: self.view, delay: 1) { (_) in
                         self.presentToHomeViewController(user: user)
                     }
