@@ -27,8 +27,6 @@ class LoginViewController: UIViewController {
 
         emailText.delegate = self
         passwordText.delegate = self
-
-
     }
 
     @IBAction func tappedDontHaveAccount(_ sender: Any) {
@@ -45,6 +43,9 @@ class LoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: pass) { (res, err) in
             if let err = err {
                 print("ログイン情報の取得に失敗しました。\(err)")
+                HUD.hide{ ( _ ) in
+                    HUD.flash(.error, delay: 1)
+                }
                 return
             }
             print("ログインに成功しました。")
@@ -70,12 +71,7 @@ class LoginViewController: UIViewController {
                         self.presentToHomeViewController(user: user)
                     }
                 }
-
-
-
             }
-
-
         }
     }
 

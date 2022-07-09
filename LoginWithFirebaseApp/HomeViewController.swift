@@ -69,7 +69,6 @@ class HomeViewController: UIViewController {
 
     @IBAction func taptoLogoutButton(_ sender: Any) {
         Logout()
-//        dismiss(animated: true)
     }
 
     private func Logout() {
