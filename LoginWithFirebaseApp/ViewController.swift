@@ -34,13 +34,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var registerButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
 
         registerButton.layer.cornerRadius = 10
-
         registerButton.isEnabled = false
         registerButton.backgroundColor = UIColor.rgb(red: 255, green: 221, blue: 187)
-
 
         emsilTextField.delegate = self
         passwordTextField.delegate = self
@@ -54,6 +51,9 @@ class ViewController: UIViewController {
  }
 
     @objc func showKeyboard(notification: Notification) {
+
+            let w = notification.userInfo![UIResponder.keyboardIsLocalUserInfoKey]
+
 
 //        let keyboardFrame = (notification.userInfo![UIResponder.keyboardIsLocalUserInfoKey] as AnyObject).cgRectValue
 //        guard let keyboardMinY = keyboardFrame?.minY else { return }
@@ -74,7 +74,6 @@ class ViewController: UIViewController {
                        , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: []) {
             self.view.transform = .identity
         }
-
     }
 
 
@@ -83,9 +82,8 @@ class ViewController: UIViewController {
     }
 
 
-    @IBAction func TappedToDontHaveAccountButton(_ sender: Any) {
+    @IBAction func TappedToAleadyAccountButton(_ sender: Any) {
 
-        print("コチラ")
         let storyBoard = UIStoryboard(name: "Login", bundle: nil)
         let viewController = storyBoard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
 
@@ -182,6 +180,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UITextFieldDelegate {
 
+    // ボタン制御
     func textFieldDidChangeSelection(_ textField: UITextField) {
         let emailIsEmpty = emsilTextField.text?.isEmpty ?? true
         let passwordIsEmpty = passwordTextField.text?.isEmpty ?? true

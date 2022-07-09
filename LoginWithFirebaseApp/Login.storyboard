@@ -76,6 +76,7 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="TappedLogin:" destination="CZM-zM-Aub" eventType="touchUpInside" id="Udr-Vf-Cvj"/>
                                     <action selector="tappedRegisterButton:" destination="CZM-zM-Aub" eventType="touchUpInside" id="6vv-2R-FDZ"/>
                                 </connections>
                             </button>
@@ -94,6 +95,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="コチラ">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="tappedDontHaveAccount:" destination="CZM-zM-Aub" eventType="touchUpInside" id="Iyk-Cb-rkF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -115,10 +119,16 @@
                             <constraint firstItem="gM1-DQ-8aH" firstAttribute="top" secondItem="RhF-Xf-JNy" secondAttribute="bottom" constant="50" id="pXt-FB-PgW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="DontHaveAccount" destination="Osr-Yj-X8D" id="338-zq-ae4"/>
+                        <outlet property="LoginBtn" destination="RhF-Xf-JNy" id="fpp-z2-hnb"/>
+                        <outlet property="emailText" destination="XvC-Ok-5EL" id="Yx0-Ep-eRH"/>
+                        <outlet property="passwordText" destination="zHU-sm-gw8" id="mah-e3-6pH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBA-Eb-LXz" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-210" y="-23"/>
+            <point key="canvasLocation" x="-1013" y="-24"/>
         </scene>
     </scenes>
     <resources>
