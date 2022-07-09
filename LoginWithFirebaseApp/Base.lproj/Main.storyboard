@@ -92,9 +92,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Register">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="tappedRegisterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6dS-GW-CgW"/>
-                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OeL-eh-bod">
                                 <rect key="frame" x="46" y="686" width="322" height="30"/>
@@ -112,7 +109,7 @@
                                             <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="TappedToDontHaveAccountButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KX5-VH-UBV"/>
+                                            <action selector="TappedToAleadyAccountButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Ba-pY-TPW"/>
                                         </connections>
                                     </button>
                                 </subviews>

@@ -76,8 +76,7 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="TappedLogin:" destination="CZM-zM-Aub" eventType="touchUpInside" id="Udr-Vf-Cvj"/>
-                                    <action selector="tappedRegisterButton:" destination="CZM-zM-Aub" eventType="touchUpInside" id="6vv-2R-FDZ"/>
+                                    <action selector="TappedLogin:" destination="CZM-zM-Aub" eventType="touchUpInside" id="3mg-Pl-frE"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gM1-DQ-8aH">
@@ -96,7 +95,7 @@
                                             <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="tappedDontHaveAccount:" destination="CZM-zM-Aub" eventType="touchUpInside" id="Iyk-Cb-rkF"/>
+                                            <action selector="tappedDontHaveAccount:" destination="CZM-zM-Aub" eventType="touchUpInside" id="8CK-Ue-CU4"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -121,7 +120,7 @@
                     </view>
                     <connections>
                         <outlet property="DontHaveAccount" destination="Osr-Yj-X8D" id="338-zq-ae4"/>
-                        <outlet property="LoginBtn" destination="RhF-Xf-JNy" id="fpp-z2-hnb"/>
+                        <outlet property="LoginBtn" destination="RhF-Xf-JNy" id="LBd-Ap-f8z"/>
                         <outlet property="emailText" destination="XvC-Ok-5EL" id="Yx0-Ep-eRH"/>
                         <outlet property="passwordText" destination="zHU-sm-gw8" id="mah-e3-6pH"/>
                     </connections>
