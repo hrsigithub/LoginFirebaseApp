@@ -9,32 +9,28 @@ import UIKit
 import Firebase
 import PKHUD
 
-struct User {
-    let name: String
-    let createAt: Timestamp
-    let email: String
-
-    init(dic: [String: Any]) {
-        self.name = dic["name"] as! String
-        self.createAt = dic["createAt"] as! Timestamp
-        self.email = dic["email"] as! String
-
-    }
-}
 
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var emsilTextField: UITextField!
-
     @IBOutlet weak var passwordTextField: UITextField!
-
     @IBOutlet weak var usernameTextField: UITextField!
-    
     @IBOutlet weak var registerButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
+        setNotification()
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.navigationBar.isHidden = true
+    }
+
+    private func setupViews() {
         registerButton.layer.cornerRadius = 10
         registerButton.isEnabled = false
         registerButton.backgroundColor = UIColor.rgb(red: 255, green: 221, blue: 187)
@@ -42,30 +38,32 @@ class ViewController: UIViewController {
         emsilTextField.delegate = self
         passwordTextField.delegate = self
         usernameTextField.delegate = self
+    }
 
+    private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard),
-                                                name: UIResponder.keyboardWillShowNotification, object: nil)
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
 
         NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard),
-                                                name: UIResponder.keyboardWillShowNotification, object: nil)
- }
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
 
     @objc func showKeyboard(notification: Notification) {
 
-            let w = notification.userInfo![UIResponder.keyboardIsLocalUserInfoKey]
+        let w = notification.userInfo![UIResponder.keyboardIsLocalUserInfoKey]
 
 
-//        let keyboardFrame = (notification.userInfo![UIResponder.keyboardIsLocalUserInfoKey] as AnyObject).cgRectValue
-//        guard let keyboardMinY = keyboardFrame?.minY else { return }
+        //        let keyboardFrame = (notification.userInfo![UIResponder.keyboardIsLocalUserInfoKey] as AnyObject).cgRectValue
+        //        guard let keyboardMinY = keyboardFrame?.minY else { return }
 
-//        let registerButtonMaxY = registerButton.frame.maxY
-//        let distance = registerButtonMaxY - keyboardMinY + 20
-//        let transform = CGAffineTransform(translationX: 0, y: -distance)
+        //        let registerButtonMaxY = registerButton.frame.maxY
+        //        let distance = registerButtonMaxY - keyboardMinY + 20
+        //        let transform = CGAffineTransform(translationX: 0, y: -distance)
 
-//        UIView.animate(withDuration: 0.5
-//                       , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: []) {
-//            self.view.transform = transform
-//        }
+        //        UIView.animate(withDuration: 0.5
+        //                       , delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: []) {
+        //            self.view.transform = transform
+        //        }
 
     }
 
@@ -91,11 +89,6 @@ class ViewController: UIViewController {
 
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        navigationController?.navigationBar.isHidden = true
-    }
 
     @IBAction func tappedRegisterButton(_ sender: Any) {
         handleAuthToFirebase()
@@ -137,31 +130,35 @@ class ViewController: UIViewController {
                 return
             }
 
-            print("FireStoreの保存に成功しました。")
+            self.fetchUserInfoFromFirestrore(userRef: userRef)
 
-            userRef.getDocument { (snapshot, err) in
-                if let err = err {
-                    print("ユーザ情報の取得に失敗しました。\(err)")
-                    HUD.hide{ ( _ ) in
-                        HUD.flash(.error, delay: 1)
-                    }
-                    return
-                }
-
-                guard let data = snapshot?.data() else { return }
-                let user = User.init(dic: data)
-
-                print("ユーザー情報の取得が出来ました。\(user.name)")
-                HUD.hide{ ( _ ) in
-                    HUD.flash(.success, onView: self.view, delay: 1) { (_) in
-                        self.presentToHomeViewController(user: user)
-                    }
-                }
-
-
-
-            }
         }
+    }
+
+    private func fetchUserInfoFromFirestrore(userRef: DocumentReference) {
+        userRef.getDocument { (snapshot, err) in
+            if let err = err {
+                print("ユーザ情報の取得に失敗しました。\(err)")
+                HUD.hide{ ( _ ) in
+                    HUD.flash(.error, delay: 1)
+                }
+                return
+            }
+
+            guard let data = snapshot?.data() else { return }
+            let user = User.init(dic: data)
+
+            print("ユーザー情報の取得が出来ました。\(user.name)")
+            HUD.hide{ ( _ ) in
+                HUD.flash(.success, onView: self.view, delay: 1) { (_) in
+                    self.presentToHomeViewController(user: user)
+                }
+            }
+
+
+
+        }
+
     }
 
     private func presentToHomeViewController(user: User) {
@@ -178,8 +175,9 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UITextFieldDelegate {
 
+
+extension ViewController: UITextFieldDelegate {
     // ボタン制御
     func textFieldDidChangeSelection(_ textField: UITextField) {
         let emailIsEmpty = emsilTextField.text?.isEmpty ?? true
