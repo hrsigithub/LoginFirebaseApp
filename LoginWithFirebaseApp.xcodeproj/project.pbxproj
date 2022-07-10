@@ -55,6 +55,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		486C0406287A768700AC9A7F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				48FE329E2874F6BB004B724E /* ViewController.swift */,
+				48088F3628767D3800427E43 /* HomeViewController.swift */,
+				48C69EFC287815B40070E344 /* LoginViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		486C0407287A76B300AC9A7F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4817A9D9287532EC009766E7 /* UIColor-Extention.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		486C0408287A76CE00AC9A7F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				48C69EFA287813670070E344 /* Login.storyboard */,
+				48088F342876795500427E43 /* Home.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		48FE328E2874F6BB004B724E = {
 			isa = PBXGroup;
 			children = (
@@ -74,16 +101,13 @@
 		48FE32992874F6BB004B724E /* LoginWithFirebaseApp */ = {
 			isa = PBXGroup;
 			children = (
+				486C0408287A76CE00AC9A7F /* Storyboards */,
+				486C0407287A76B300AC9A7F /* Helpers */,
+				486C0406287A768700AC9A7F /* Controllers */,
 				48FE329A2874F6BB004B724E /* AppDelegate.swift */,
-				4817A9D9287532EC009766E7 /* UIColor-Extention.swift */,
 				48088F32287671B600427E43 /* GoogleService-Info.plist */,
 				48FE329C2874F6BB004B724E /* SceneDelegate.swift */,
-				48FE329E2874F6BB004B724E /* ViewController.swift */,
-				48088F3628767D3800427E43 /* HomeViewController.swift */,
-				48C69EFC287815B40070E344 /* LoginViewController.swift */,
 				48FE32A02874F6BB004B724E /* Main.storyboard */,
-				48C69EFA287813670070E344 /* Login.storyboard */,
-				48088F342876795500427E43 /* Home.storyboard */,
 				48FE32A32874F6BE004B724E /* Assets.xcassets */,
 				48FE32A52874F6BE004B724E /* LaunchScreen.storyboard */,
 				48FE32A82874F6BE004B724E /* Info.plist */,
