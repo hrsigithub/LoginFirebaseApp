@@ -75,6 +75,7 @@ class LoginViewController: UIViewController {
         }
     }
 
+    // パラメータ渡す
     private func presentToHomeViewController(user: User) {
         let storyBoard = UIStoryboard(name: "Home", bundle: nil)
         let homeViewController = storyBoard.instantiateViewController(identifier: "HomeViewController") as! HomeViewController

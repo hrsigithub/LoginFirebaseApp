@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 
+
 class HomeViewController: UIViewController {
 
     var user: User? {
@@ -32,7 +33,7 @@ class HomeViewController: UIViewController {
             nameLabel.text = user.name + "さんようこそ"
             emailLabel.text = user.email
 
-            let dateStiing = dateFormatterForCreateAt(date: user.createAt.dateValue())
+            let dateStiing = Util.dateFormatterForCreateAt(date: user.createAt.dateValue())
             dateLabel.text = "作成日： " + dateStiing
 
         }
@@ -49,13 +50,13 @@ class HomeViewController: UIViewController {
     private func confirmLoggedUser() {
         if Auth.auth().currentUser?.uid == nil || user == nil {
 
-            presentToMainVC()
+            presentToSignUpVC()
 
         }
     }
 
-    private func presentToMainVC () {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+    private func presentToSignUpVC () {
+        let storyBoard = UIStoryboard(name: "SignUp", bundle: nil)
         let vc = storyBoard.instantiateViewController(identifier: "ViewController") as! ViewController
 
         let nav = UINavigationController(rootViewController: vc)
@@ -73,8 +74,8 @@ class HomeViewController: UIViewController {
 
     private func Logout() {
         do {
-        try Auth.auth().signOut()
-            presentToMainVC()
+            try Auth.auth().signOut()
+            presentToSignUpVC()
 
         } catch(let err) {
             print("ログアウトに失敗しました。\(err)")
@@ -82,12 +83,4 @@ class HomeViewController: UIViewController {
     }
 
 
-    private func dateFormatterForCreateAt(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .none
-        formatter.locale = Locale(identifier: "ja_JP")
-
-        return formatter.string(from: date)
-    }
 }
